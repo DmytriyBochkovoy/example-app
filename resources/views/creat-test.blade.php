@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12 text-center mb-3">
                 <span class="fs-4">
-                    Форма созадания теста
+                    Форма создания теста
                 </span>
             </div>
             <div class="col-12">

@@ -30,9 +30,6 @@ class TestController extends Controller
             'description' => $request->input('description'),
         ];
 
-//        $questions = $request->input('questions');
-
-
         $test = Test::create($testData);
 
 //        $test->questions()->saveMany(
@@ -46,11 +43,32 @@ class TestController extends Controller
         return json_encode($test);
     }
 
-    public function editTest() {
+    public function viewEditTest(Request $request, $id) {
 
-        $testPaginator = Test::withCount('questions')->paginate();
+        $testId = $request->route('id');
 
-        return view('edit-test', ['testPaginator' => $testPaginator]);
+        $test = Test::where('id', $testId)
+            ->withCount('questions')
+            ->first();
+
+
+        return view('edit-test', ['test' => $test]);
     }
+
+    public function updateTest(Request $request) {
+
+        $testId = $request->route('id');
+
+        Test::where('id', $testId)
+            ->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+            ]);
+
+        return redirect(route('tests'));
+    }
+
+
+
 
 }

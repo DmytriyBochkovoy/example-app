@@ -10,16 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $testName = DB::table('tests')
-            ->select('name', 'id')
-            ->get();
-        $questionTypes = DB::table('question_types')
-            ->select('name', 'id')
-            ->get();
+        $testId = $request->route('id');
 
-        return view('create-question', ['testName' => $testName, 'questionTypes' => $questionTypes]);
+        $questions = Question::select('*')
+            ->where('test_id', '=', $testId)
+            ->paginate();
+
+        return view('questions', ['questions' => $questions]);
     }
 
     public function store(QuestionRequest $request)

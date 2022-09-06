@@ -1,8 +1,8 @@
 @extends('index')
 
-@section('title')
-    Тесты
-@endsection
+{{--@section('title')--}}
+{{--    Вопросы к тесу: {{}}--}}
+{{--@endsection--}}
 
 @section('fonts')
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,40 +15,15 @@
 @endsection
 
 @section('main')
-    <section class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            @foreach($testPaginator as $test)
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"></rect>
-                            <text x="30%" y="50%" fill="#eceeef" dy=".3em">Название теста: {{$test->name}}</text>
-                        </svg>
-
-                        <div class="card-body">
-                            <p class="card-text">Описание теста: {{$test->description}}</p>
-                            <div class="my-3">Количество вопросов в тесте: {{$test->questions_count}}</div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ route('view-edit-test', $test->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    <a href="{{ route('view-questions', $test->id) }}" class="btn btn-sm btn-outline-secondary">Редактирование вопросов</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        {{$testPaginator->links()}}
-        <div class="container">
-            <div class="row pt-5 my-5">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="text-center mx-5">
-                        <a class="btn btn-success" href="{{ url( '/creat') }}">Добавить новый тест</a>
-                    </div>
-                </div>
+    <div class="container">
+        @foreach($questions as $question)
+            <div class="bg-light p-5 rounded">
+                <h1>Example</h1>
+                <p class="lead">{{$question->text}}</p>
+                <a class="btn btn-lg btn-danger" href="" role="button">удалить</a>
+                <a class="btn btn-lg btn-primary" href="" role="button">редактировать</a>
             </div>
-        </div>
-    </section>
+        @endforeach
+        {{$questions->links()}}
+    </div>
 @endsection

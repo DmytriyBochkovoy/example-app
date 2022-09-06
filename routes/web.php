@@ -23,13 +23,15 @@ Route::get('/creat', function () {
     return view('creat-test');
 });
 
-Route::get('/tests', [TestController::class, 'index']);
+Route::get('/tests', [TestController::class, 'index'])->name('tests');
 
 Route::post('/test/create', [TestController::class, 'store'])->name('test-create');
 
-Route::get('tests/edit-test/{id}', [TestController::class, 'editTest'])->name('edit-test');
+Route::get('tests/edit-test/{id}', [TestController::class, 'viewEditTest'])->name('view-edit-test');
 
-Route::get('/tests/questions', [QuestionController::class, 'index'])->name('question-form');
+Route::post('tests/edit-test/{id}', [TestController::class, 'updateTest'])->name('update-test');
+
+Route::get('tests/edit-test/{id}/questions', [QuestionController::class, 'index'])->name('view-questions');
 
 Route::post('/tests/questions', [QuestionController::class, 'store'])->name('question-create');
 
