@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Models\Answer;
 use App\Models\Question;
+use App\Models\QuestionType;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,35 +16,55 @@ class QuestionController extends Controller
     {
         $testId = $request->route('id');
 
-        $questions = Question::select('*')
+        $questions = Question::with('answers')
             ->where('test_id', '=', $testId)
             ->paginate();
 
-        return view('questions', ['questions' => $questions]);
+        return view('questions', ['questions' => $questions, 'testId' => $testId]);
     }
 
     public function store(QuestionRequest $request)
     {
-//        $validatedData = $request->validate([
-//            'text' => 'required'
-//        ]);
-
         $questionData = [
             'text' => $request->input('text'),
             'type_id' => $request->input('type_id'),
-            'test_id' => $request->input('test_id')
+            'test_id' => $request->route('id')
         ];
-
-//        $question = DB::table('questions')
-//            ->insert([
-//                'text' => $request->input('text'),
-//                'type_id' => $request->input('type_id'),
-//                'test_id' => $request->input('test_id')
-//            ]);
 
         $question = Question::create($questionData);
 
         return json_encode($question);
+    }
+
+    public function edit(Request $request, $id) {
+
+        $testId = $request->route('id');
+
+        $test = Test::where('id', $testId)
+            ->withCount('questions')
+            ->first();
+
+        $questionTypes = QuestionType::select('name', 'id')
+            ->get();
+
+        return view('create-question', ['test' => $test, 'questionTypes' => $questionTypes]);
+    }
+
+    public function update(Request $request)
+    {
+//        $questionData = [
+//            'text' => $request->input('text'),
+//            'type_id' => $request->input('type_id'),
+//            'test_id' => $request->input('test_id')
+//        ];
+//
+//        Question::where('id', $testId)
+//            ->update([
+//                'name' => $request->input('name'),
+//                'description' => $request->input('description'),
+//            ]);
+//
+//        return
     }
 
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\DataTransferObjects\CreateTestData;
+use App\Http\Resources\CreateTestResource;
 use App\Models\Test;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -24,26 +24,19 @@ class TestController extends Controller
         return view('tests', ['testPaginator' => $testPaginator]);
     }
 
-    public function store (Request $request) {
-        $testData = [
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-        ];
+    public function store (CreateTestData $testData) {
 
-        $test = Test::create($testData);
+        $tests = Test::get();
+        return CreateTestResource::collection($tests);
 
-//        $test->questions()->saveMany(
-//            array_map(function ($question) {
-//                return new Question($question);
-//            }, $questions)
-//        );
+//        $testData = CreateTestData::fromRequest($request);
 
-//        $test->load('questions');
+        $test = Test::create($testData->toArray());
 
-        return json_encode($test);
+        return CreateTestResource::make($test);
     }
 
-    public function viewEditTest(Request $request, $id) {
+    public function edit(Request $request, $id) {
 
         $testId = $request->route('id');
 
@@ -52,10 +45,15 @@ class TestController extends Controller
             ->first();
 
 
-        return view('edit-test', ['test' => $test]);
+        return view('edit-test', ['test' => $test, 'testId' => $testId]);
     }
 
-    public function updateTest(Request $request) {
+    public function update(Request $request) {
+
+        $request->validate([
+            'name' => 'required|max:100',
+            'description' => 'required|max:255'
+        ]);
 
         $testId = $request->route('id');
 

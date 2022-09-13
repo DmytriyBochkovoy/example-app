@@ -17,6 +17,20 @@
                 </span>
             </div>
             <div class="col-12">
+                @if($errors->any())
+                    <div class="bg-danger">
+                        <p>Не заполнены следующие поля</p>
+                    </div>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>
+                                {{$error}}
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+            <div class="col-12">
                 <form action="{{ route('test-create') }}" method="POST">
                     @csrf
                     <div class="form-group border border-primary fs-5 rounded-3">
@@ -29,7 +43,7 @@
                             <input type="text" class="form-control" id="descriptionTest" name="description">
                         </div>
                         <div class="text-center my-3">
-                            <button type="submit" class="btn btn-success">Добавить тест</button>
+                            <button type="submit" class="btn btn-success">Сохранить тест</button>
                         </div>
                     </div>
                 </form>

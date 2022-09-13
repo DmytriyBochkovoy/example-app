@@ -1,7 +1,7 @@
 `@extends('index')
 
 @section('title')
-    Редактор тестов
+    Добавление вопроса
 @endsection
 
 @section('fonts')
@@ -17,18 +17,13 @@
                 </span>
             </div>
             <div class="col-12">
-                <form action="{{ route('question-create') }}" method="POST">
+                <form action="{{ route('question-create', $test->id) }}" method="POST">
                     @csrf
                     <div class="form-group border border-primary fs-5 rounded-3">
-                        <div class="mb-3 px-5 py-3">
-                            <p>Выберите тест в который будет добавлен вопрос.</p>
-                            <select class="form-select" aria-label="Default select example" name="test_id">
-                                @foreach($testName as $test)
-                                    <option value="{{$test->id}}">{{$test->name}}</option>
-                                @endforeach
-                            </select>
+                        <div class="mt-4 mb-1 px-5 py-1">
+                            <p>Тест: {{$test->name}}</p>
                         </div>
-                        <div class="mb-3 px-5 py-3">
+                        <div class="mb-3 px-5 py-1">
                             <p>Выберите тему вопроса.</p>
                             <select class="form-select mt-3" aria-label="Default select example" name="type_id">
                                 @foreach($questionTypes as $questionType)
@@ -41,7 +36,7 @@
                             <input type="text" class="form-control" id="nameTest" name="text">
                         </div>
                         <div class="text-center my-3">
-                            <button type="submit" class="btn btn-success">Добавить вопрос</button>
+                            <button type="submit" class="btn btn-success">Сохранить вопрос</button>
                         </div>
                     </div>
                 </form>

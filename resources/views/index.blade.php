@@ -30,11 +30,12 @@
                 </a>
 
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Главная</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Новости</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Мероприятия</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">опрос</a></li>
+                    <li class="nav-item"><a href="{{ route('tests') }}" class="nav-link">Редактирование тестов</a></li>
                 </ul>
             </header>
         </section>
