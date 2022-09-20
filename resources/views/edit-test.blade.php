@@ -1,7 +1,15 @@
 @extends('template-edit')
 
 @section('body-editor')
-    <div class="container mt-5">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-12 text-start">
+                <a href="{{ route('tests') }}"
+                   class="fs-5 btn btn-sm btn-outline-primary">
+                    Вернуться в каталог тестов
+                </a>
+            </div>
+        </div>
         <div class="row">
             <form action="{{ route('update-test', $test->id) }}" method="POST">
                 @csrf

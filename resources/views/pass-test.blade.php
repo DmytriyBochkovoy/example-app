@@ -395,30 +395,33 @@
 
 @section('main')
     <section class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            @foreach($testPaginator as $test)
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <a href="{{ route('edit-test', $test->id) }}"
-                           class="btn btn-sm  bg-secondary fs-4 py-5">{{$test->name}}</a>
-                        <div class="card-body">
-                            <p class="card-text">Описание теста: {{$test->description}}</p>
-                            <div class="my-3">Количество вопросов в тесте: {{$test->questions_count}}</div>
-                        </div>
+        <form action="{{ route('answer-user') }}" method="POST">
+            @csrf
+            @foreach($questions as $question)
+                <div class="row bg-light p-3 mt-3 mx-3 border border-bottom-0 border-info">
+                    <div class="col-12">
+                        <span class="lead fw-bold ">{{$question->text}}</span>
                     </div>
+                </div>
+                <div class="row bg-light p-3 mb-3 mx-3 border border-top-0 border-info">
+                    @foreach($question->answers as $answer)
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input type="checkbox"
+                                       class="form-check-input"
+                                       id="answer_{{$answer->id}}"
+                                       name="answer_{{$answer->id}}"
+                                       value="{{$answer->id}}">
+                                <label class="form-check-label" for="answer_{{$answer->id}}">{{$answer->text}}</label>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endforeach
-        </div>
-        {{$testPaginator->links()}}
-        <div class="container">
-            <div class="row pt-5 my-5">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="text-center mx-5">
-                        <a class="btn btn-success" href="{{route('test-create')}}">Добавить новый тест</a>
-                    </div>
-                </div>
+            <div class="text-center my-3">
+                <button type="submit" class="btn btn-success">Завершить тест</button>
             </div>
-        </div>
+        </form>
+        {{$questions->links()}}
     </section>
-    {{--    {{dd(\Illuminate\Support\Facades\Hash::make('qwerty'))}}--}}
 @endsection

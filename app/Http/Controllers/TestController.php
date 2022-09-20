@@ -6,10 +6,12 @@ use App\DataTransferObjects\CreateTestData;
 use App\Http\Resources\CreateTestResource;
 use App\Models\Test;
 use Illuminate\Http\Request;
+use App\Enums\QuestionTypeEnum;
 
 class TestController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $testPaginator = Test::withCount('questions')->paginate();
 
 //        $tests = DB::table('tests')
@@ -24,19 +26,31 @@ class TestController extends Controller
         return view('tests', ['testPaginator' => $testPaginator]);
     }
 
-    public function store (CreateTestData $testData) {
+    public function show()
+    {
+        $questionTypes = QuestionTypeEnum::cases();
 
-        $tests = Test::get();
-        return CreateTestResource::collection($tests);
+        $testPaginator = Test::withCount('questions')->paginate();
 
-//        $testData = CreateTestData::fromRequest($request);
-
-        $test = Test::create($testData->toArray());
-
-        return CreateTestResource::make($test);
+        return view('tests-user', ['testPaginator' => $testPaginator, 'questionTypes' => $questionTypes]);
     }
 
-    public function edit(Request $request, $id) {
+    public function create()
+    {
+        return view('create-test');
+    }
+
+    public function store(CreateTestData $testData)
+    {
+        $test = Test::create($testData->toArray());
+
+//        CreateTestResource::make($test);
+
+        return redirect(route('tests'));
+    }
+
+    public function edit(Request $request, $id)
+    {
 
         $testId = $request->route('id');
 
@@ -48,7 +62,8 @@ class TestController extends Controller
         return view('edit-test', ['test' => $test, 'testId' => $testId]);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         $request->validate([
             'name' => 'required|max:100',
@@ -65,8 +80,6 @@ class TestController extends Controller
 
         return redirect(route('tests'));
     }
-
-
 
 
 }

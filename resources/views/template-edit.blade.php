@@ -396,17 +396,13 @@
 @section('main')
     <div class="container">
         <div class="row">
-            <div class="col-4 text-center border border-3 border-end-0">
+            <div class="col-6 text-center border border-3 border-end-0">
                 <a href="{{ route('edit-test', $testId) }}"
                    class="fs-5 my-2 btn btn-sm btn-outline-success">Редактирование теста:</a>
             </div>
-            <div class="col-4 text-center border border-3">
+            <div class="col-6 text-center border border-3">
                 <a href="{{ route('questions', $testId) }}"
                    class="fs-5 my-2 btn btn-sm btn-outline-success">Редактирование вопросов:</a>
-            </div>
-            <div class="col-4 text-center border border-3 border-start-0">
-                <a href=""
-                   class="fs-5 my-2 btn btn-sm btn-outline-success">Редактирование ответов:</a>
             </div>
         </div>
         <div class="row border border-3 border-top-0">

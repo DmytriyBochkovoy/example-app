@@ -399,26 +399,37 @@
             @foreach($testPaginator as $test)
                 <div class="col">
                     <div class="card shadow-sm">
-                        <a href="{{ route('edit-test', $test->id) }}"
+                        <a href="#"
                            class="btn btn-sm  bg-secondary fs-4 py-5">{{$test->name}}</a>
                         <div class="card-body">
                             <p class="card-text">Описание теста: {{$test->description}}</p>
                             <div class="my-3">Количество вопросов в тесте: {{$test->questions_count}}</div>
+                        </div>
+                        <div class="m-3">
+                            <div class="form-check">
+                                <input id="{{$test->id}}_1"
+                                       name="questionType"
+                                       type="radio"
+                                       class="form-check-input"
+                                       checked="">
+                                <label class="form-check-label" for="{{$test->id}}_1">С одним ответом</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="{{$test->id}}_2"
+                                       name="questionType"
+                                       type="radio"
+                                       class="form-check-input">
+                                <label class="form-check-label" for="{{$test->id}}_2">С множественным ответом</label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="{{ route('test-user', [$test->name, $test->id]) }}"
+                               class="fs-5 my-2 btn btn-sm btn-outline-success">Пройти тест</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
         {{$testPaginator->links()}}
-        <div class="container">
-            <div class="row pt-5 my-5">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="text-center mx-5">
-                        <a class="btn btn-success" href="{{route('test-create')}}">Добавить новый тест</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
-    {{--    {{dd(\Illuminate\Support\Facades\Hash::make('qwerty'))}}--}}
 @endsection

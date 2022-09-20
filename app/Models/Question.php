@@ -14,7 +14,8 @@ class Question extends Model
     protected $fillable = [
         'text',
         'type_id',
-        'test_id'
+        'test_id',
+        'question_type'
     ];
 
     public function test(): BelongsTo

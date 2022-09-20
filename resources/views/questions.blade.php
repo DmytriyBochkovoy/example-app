@@ -3,10 +3,16 @@
 @section('body-editor')
     <div class="container">
         <div class="row">
-            <div class="col-12 text-end">
-                <a href=""
+            <div class="col-6 text-start">
+                <a href="{{ route('tests') }}"
                    class="fs-5 m-3 btn btn-sm btn-outline-primary">
-                    Добваить вопрос
+                    Вернуться в каталог тестов
+                </a>
+            </div>
+            <div class="col-6 text-end">
+                <a href="{{ route('question', $testId) }}"
+                   class="fs-5 m-3 btn btn-sm btn-outline-primary">
+                    Добавить вопрос
                 </a>
             </div>
         </div>
@@ -28,12 +34,12 @@
                     </a>
                 </div>
                 <div class="col-4 text-end">
-                    <a href=""
+                    <a href="{{route('destroy-question', $question->id)}}"
                        class="btn btn-sm btn-outline-danger"
                        title="Удалить вопрос">
                         Удалить
                     </a>
-                    <a href=""
+                    <a href="{{route('create-answer', $question->id)}}"
                        class="btn btn-sm btn-outline-success"
                        title="Добавить ответ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -50,7 +56,7 @@
                 @foreach($question->answers as $answer)
                     <div class="col-6">{{$answer->text}}</div>
                     <div class="col-6 d-flex">
-                        <a href=""
+                        <a href="{{route('edit-answer', $answer->id)}}"
                            class="mx-3">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="16" height="16" fill="currentColor"
@@ -60,7 +66,7 @@
                                     d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                             </svg>
                         </a>
-                        <a href=""
+                        <a href="{{route('destroy-answer', [ $answer->question_id, $answer->id ])}}"
                            class="mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="16" height="16" fill="currentColor"

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('text');
             $table->unsignedBigInteger('test_id');
             $table->unsignedBigInteger('type_id');
+            $table->string('question_type');
             $table->timestamps();
             $table->softDeletes();
         });

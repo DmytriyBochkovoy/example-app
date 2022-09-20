@@ -31,7 +31,7 @@
                 @endif
             </div>
             <div class="col-12">
-                <form action="{{ route('test-create') }}" method="POST">
+                <form action="{{ route('test-save') }}" method="POST">
                     @csrf
                     <div class="form-group border border-primary fs-5 rounded-3">
                         <div class="mb-3 px-5 py-3">

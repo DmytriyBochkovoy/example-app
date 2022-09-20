@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\QuestionTypeEnum;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
@@ -23,20 +24,34 @@ class QuestionController extends Controller
         return view('questions', ['questions' => $questions, 'testId' => $testId]);
     }
 
+    public function show(Request $request)
+    {
+        $testId = $request->route('testId');
+
+        $questions = Question::with('answers')
+            ->where('test_id', '=', $testId)
+            ->paginate();
+
+        return view('pass-test', ['questions' => $questions]);
+    }
+
     public function store(QuestionRequest $request)
     {
         $questionData = [
             'text' => $request->input('text'),
             'type_id' => $request->input('type_id'),
-            'test_id' => $request->route('id')
+            'test_id' => $request->route('id'),
+            'question_type' => $request->input('question_type')
         ];
 
         $question = Question::create($questionData);
 
-        return json_encode($question);
+        return redirect(route('questions'));
     }
 
-    public function edit(Request $request, $id) {
+    public function edit(Request $request, $id)
+    {
+        $questionTypes = QuestionTypeEnum::cases();
 
         $testId = $request->route('id');
 
@@ -44,10 +59,14 @@ class QuestionController extends Controller
             ->withCount('questions')
             ->first();
 
-        $questionTypes = QuestionType::select('name', 'id')
+        $questionTopic = QuestionType::select('name', 'id')
             ->get();
 
-        return view('create-question', ['test' => $test, 'questionTypes' => $questionTypes]);
+        return view('create-question', ['test' => $test,
+            'questionTopic' => $questionTopic,
+            'testId' => $testId,
+            'questionTypes' => $questionTypes
+        ]);
     }
 
     public function update(Request $request)
@@ -65,6 +84,15 @@ class QuestionController extends Controller
 //            ]);
 //
 //        return
+    }
+
+    public function destroy(Request $request)
+    {
+        $questionId = $request->route('questionId');
+
+        $result = Question::destroy($questionId);
+
+        return redirect(route('tests'));
     }
 
 }
