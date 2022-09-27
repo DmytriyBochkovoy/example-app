@@ -7,6 +7,7 @@ use App\Http\Resources\CreateTestResource;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionType;
+use App\Models\TestResult;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 
@@ -75,11 +76,19 @@ class AnswerController extends Controller
         return redirect(route('tests'));
     }
 
-    public function userAnswersData(Request $request)
+    public function testResultData(Request $request)
     {
-        $answer = $request->collect();
+        $answersUser = $request->all();
 
-        dd($answer);
+        unset($answersUser['_token']);
+
+        $answersUserData = [
+            'user_id' => '12345',
+            'answers' => json_encode($answersUser)
+        ];
+
+        TestResult::create($answersUserData);
+
+        return redirect(route('tests-user'));
     }
-
 }

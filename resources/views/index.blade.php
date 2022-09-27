@@ -23,6 +23,14 @@
 </head>
 <body class="antialiased">
 <section class="container">
+    <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-end">
+            <ul class="nav fs-5">
+                <li class="nav-item"><a href="{{route('login')}}" class="nav-link link-dark px-2">Login</a></li>
+                <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Sign up</a></li>
+            </ul>
+        </div>
+    </div>
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
@@ -34,7 +42,7 @@
             <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
             <li class="nav-item"><a href="{{ route('tests-user') }}" class="nav-link" aria-current="page">Тесты</a></li>
             <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Новости</a></li>
+            <li class="nav-item"><a href="{{ route('tests-result') }}" class="nav-link">Результаты тестирования</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Мероприятия</a></li>
             <li class="nav-item"><a href="#" class="nav-link">опрос</a></li>
             <li class="nav-item"><a href="{{ route('tests') }}" class="nav-link">Редактирование тестов</a></li>
@@ -87,5 +95,6 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+</script>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::get('/', function () {
     return view('home');
 })->name('index');
 
+Route::get('/', function () {
+    return view('login');
+})->name('login');
+
 Route::get('/tests', [TestController::class, 'index'])->name('tests');
 
 Route::get('/tests/test/creation', [TestController::class, 'create'])->name('test-create');
@@ -34,7 +39,7 @@ Route::get('/tests/catalog', [TestController::class, 'show'])->name('tests-user'
 
 Route::get('/tests/{testName}/{testId}', [QuestionController::class, 'show'])->name('test-user');
 
-Route::post('/tests/answer-user', [AnswerController::class, 'userAnswersData'])->name('answer-user');
+Route::post('/tests/answer-user', [AnswerController::class, 'testResultData'])->name('answer-user');
 
 Route::get('/tests/edit-test/{id}/questions', [QuestionController::class, 'index'])->name('questions');
 
@@ -53,6 +58,8 @@ Route::get('/test/question/answer/{id}', [AnswerController::class, 'edit'])->nam
 Route::post('/test/question/answer/{id}/update', [AnswerController::class, 'update'])->name('update-answer');
 
 Route::get('/test/question/{questionId}/answer/{id}/destroy', [AnswerController::class, 'destroy'])->name('destroy-answer');
+
+Route::get('/tests/results', [TestResultController::class, 'show'])->name('tests-result');
 
 
 

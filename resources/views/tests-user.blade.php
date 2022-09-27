@@ -405,23 +405,6 @@
                             <p class="card-text">Описание теста: {{$test->description}}</p>
                             <div class="my-3">Количество вопросов в тесте: {{$test->questions_count}}</div>
                         </div>
-                        <div class="m-3">
-                            <div class="form-check">
-                                <input id="{{$test->id}}_1"
-                                       name="questionType"
-                                       type="radio"
-                                       class="form-check-input"
-                                       checked="">
-                                <label class="form-check-label" for="{{$test->id}}_1">С одним ответом</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="{{$test->id}}_2"
-                                       name="questionType"
-                                       type="radio"
-                                       class="form-check-input">
-                                <label class="form-check-label" for="{{$test->id}}_2">С множественным ответом</label>
-                            </div>
-                        </div>
                         <div class="text-center">
                             <a href="{{ route('test-user', [$test->name, $test->id]) }}"
                                class="fs-5 my-2 btn btn-sm btn-outline-success">Пройти тест</a>

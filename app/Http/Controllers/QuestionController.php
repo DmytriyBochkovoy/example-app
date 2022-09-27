@@ -24,15 +24,17 @@ class QuestionController extends Controller
         return view('questions', ['questions' => $questions, 'testId' => $testId]);
     }
 
-    public function show(Request $request)
+    public function show(Request $request )
     {
         $testId = $request->route('testId');
 
+        $questionType = $request->route('questionType');
+
         $questions = Question::with('answers')
-            ->where('test_id', '=', $testId)
+            ->where('test_id', $testId)
             ->paginate();
 
-        return view('pass-test', ['questions' => $questions]);
+        return view('pass-test', ['questions' => $questions, 'questionType' => $questionType]);
     }
 
     public function store(QuestionRequest $request)

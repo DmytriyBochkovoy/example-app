@@ -404,18 +404,33 @@
                     </div>
                 </div>
                 <div class="row bg-light p-3 mb-3 mx-3 border border-top-0 border-info">
-                    @foreach($question->answers as $answer)
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input type="checkbox"
-                                       class="form-check-input"
-                                       id="answer_{{$answer->id}}"
-                                       name="answer_{{$answer->id}}"
-                                       value="{{$answer->id}}">
-                                <label class="form-check-label" for="answer_{{$answer->id}}">{{$answer->text}}</label>
+                    @if($question->question_type === \App\Enums\QuestionTypeEnum::MULTIPLE->value)
+                        @foreach($question->answers as $answer)
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox"
+                                           class="form-check-input"
+                                           id="answer_{{$answer->id}}"
+                                           name="answer_{{$answer->id}}"
+                                           value="{{$answer->id}}">
+                                    <label class="form-check-label" for="answer_{{$answer->id}}">{{$answer->text}}</label>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @elseif($question->question_type === \App\Enums\QuestionTypeEnum::SINGLE->value)
+                        @foreach($question->answers as $answer)
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="radio"
+                                           class="form-check-input"
+                                           id="answer_{{$answer->id}}"
+                                           name="answer_{{$answer->question_id}}"
+                                           value="{{$answer->id}}">
+                                    <label class="form-check-label" for="answer_{{$answer->id}}">{{$answer->text}}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             @endforeach
             <div class="text-center my-3">
