@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\AnswerController;
@@ -21,9 +23,15 @@ Route::get('/', function () {
     return view('home');
 })->name('index');
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::get('/sign-in', [LoginController::class, 'index'])->name('sign-in');
+
+Route::post('/sign-in/check', [LoginController::class, 'login'])->name('sign-in-check');
+
+Route::get('/sign-up', [RegistrationController::class, 'index'])->name('sign-up');
+
+Route::post('/sign-up/save', [RegistrationController::class, 'save'])->name('sign-up-save');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/tests', [TestController::class, 'index'])->name('tests');
 

@@ -25,10 +25,13 @@
 <section class="container">
     <div class="row mt-3">
         <div class="col-12 d-flex justify-content-end">
-            <ul class="nav fs-5">
-                <li class="nav-item"><a href="{{route('login')}}" class="nav-link link-dark px-2">Login</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Sign up</a></li>
-            </ul>
+            @if(Auth::check())
+                <a href="{{route('logout')}}" class="btn btn-danger">Выйти</a>
+            @else()
+                <div>
+                    <a href="{{route('sign-in')}}" class="btn btn-success">Войти</a>
+                </div>
+            @endif
         </div>
     </div>
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -40,7 +43,9 @@
         </a>
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
-            <li class="nav-item"><a href="{{ route('tests-user') }}" class="nav-link" aria-current="page">Тесты</a></li>
+            @if(Auth::check())
+                <li class="nav-item"><a href="{{ route('tests-user') }}" class="nav-link" aria-current="page">Тесты</a></li>
+            @endif
             <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
             <li class="nav-item"><a href="{{ route('tests-result') }}" class="nav-link">Результаты тестирования</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Мероприятия</a></li>

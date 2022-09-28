@@ -23,16 +23,16 @@
 </head>
 <body class="text-center">
 <main class="form-signin">
-    <form action="" method="POST">
+    <form action="{{route('sign-in-check')}}" method="POST">
         @csrf
         <h1 class="h3 mb-3 fw-normal">Войти</h1>
 
         <div class="form-floating my-2">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Эл. почта или телефон</label>
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Эл. почта</label>
         </div>
         <div class="form-floating my-2">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Пароль</label>
         </div>
 
@@ -43,6 +43,9 @@
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
     </form>
+    <div class="text-center fs-5 mt-2">
+        <a href="{{route('sign-up')}}">Зарегистрироваться</a>
+    </div>
 </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

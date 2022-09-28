@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\QuestionType;
 use App\Models\TestResult;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\This;
 
 class AnswerController extends Controller
@@ -82,9 +83,11 @@ class AnswerController extends Controller
 
         unset($answersUser['_token']);
 
+        $userId = Auth::id();
+
         $answersUserData = [
-            'user_id' => '12345',
-            'answers' => json_encode($answersUser)
+            'user_id' => $userId,
+            'answers' => $answersUser
         ];
 
         TestResult::create($answersUserData);
