@@ -1,4 +1,17 @@
 import './bootstrap';
 import '../css/app.css';
 
-console.log('test');
+import {createApp} from "vue/dist/vue.esm-bundler";
+
+import router from "./router"
+import store from "./store";
+
+import HomeComponent from "./components/HomeComponent.vue";
+// import TestsUser from "./components/TestsUser.vue";
+import App from "./App.vue";
+
+const app = createApp(App);
+
+app.use(router)
+    .use(store)
+    .mount('#app');

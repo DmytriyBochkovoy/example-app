@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Api\TestApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,22 +17,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
+Route::get('/tests/all', [TestApiController::class, 'index']);
 
-Route::get('/creat', function () {
-    return view('creat-test');
-});
-
-Route::get('/tests', [TestController::class, 'index']);
-
-Route::post('/test/create', [TestController::class, 'store'])->name('test-create');
-
-Route::get('/tests/questions', [QuestionController::class, 'index'])->name('question-form');
-
-Route::post('/tests/questions', [QuestionController::class, 'store'])->name('question-create');
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});

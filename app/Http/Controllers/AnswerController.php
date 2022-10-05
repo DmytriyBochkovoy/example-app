@@ -87,10 +87,11 @@ class AnswerController extends Controller
 
         $answersUserData = [
             'user_id' => $userId,
-            'answers' => $answersUser
+            'answers' => $answersUser,
+            'result' => $answersUser
         ];
 
-        TestResult::create($answersUserData);
+//        TestResult::create($answersUserData);
 
         return redirect(route('tests-user'));
     }

@@ -32,6 +32,7 @@ class QuestionController extends Controller
 
         $questions = Question::with('answers')
             ->where('test_id', $testId)
+            ->whereHas('answers')
             ->paginate();
 
         return view('pass-test', ['questions' => $questions, 'questionType' => $questionType]);

@@ -14,15 +14,6 @@ class TestController extends Controller
     {
         $testPaginator = Test::withCount('questions')->paginate();
 
-//        $tests = DB::table('tests')
-//            ->selectRaw('count(tests.id) as questions_count')
-//            ->leftJoin('questions', 'questions.test_id', '=', 'tests.id')
-//            ->whereNotNull('questions.test_id')
-//            ->groupBy('tests.id')
-//            ->having('questions_count', '<', 2)
-//            ->get()
-//            ->dd();
-
         return view('tests', ['testPaginator' => $testPaginator]);
     }
 
@@ -43,8 +34,6 @@ class TestController extends Controller
     public function store(CreateTestData $testData)
     {
         $test = Test::create($testData->toArray());
-
-//        CreateTestResource::make($test);
 
         return redirect(route('tests'));
     }

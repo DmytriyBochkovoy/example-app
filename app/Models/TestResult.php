@@ -12,7 +12,8 @@ class TestResult extends Model
 
     protected $fillable = [
         'user_id',
-        'answers'
+        'answers',
+        'result'
     ];
 
     protected $casts = [

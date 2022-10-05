@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->jsonb('answers');
+            $table->unsignedBigInteger('result');
             $table->timestamps();
             $table->softDeletes();
         });

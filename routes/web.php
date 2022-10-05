@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
 })->name('index');
 
@@ -43,7 +43,7 @@ Route::get('/tests/edit-test/{id}', [TestController::class, 'edit'])->name('edit
 
 Route::post('/tests/edit-test/{id}', [TestController::class, 'update'])->name('update-test');
 
-Route::get('/tests/catalog', [TestController::class, 'show'])->name('tests-user');
+Route::get('/tests/catalog', [TestController::class, 'show'])->middleware('auth')->name('tests-user');
 
 Route::get('/tests/{testName}/{testId}', [QuestionController::class, 'show'])->name('test-user');
 
@@ -68,6 +68,10 @@ Route::post('/test/question/answer/{id}/update', [AnswerController::class, 'upda
 Route::get('/test/question/{questionId}/answer/{id}/destroy', [AnswerController::class, 'destroy'])->name('destroy-answer');
 
 Route::get('/tests/results', [TestResultController::class, 'show'])->name('tests-result');
+
+Route::get('{any}', function () {
+    return view('app');
+})->where('any', '.*');
 
 
 
