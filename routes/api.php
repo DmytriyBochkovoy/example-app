@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\Api\QuestionApiController;
 use App\Http\Controllers\Api\TestApiController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/tests/all', [TestApiController::class, 'index']);
+
+Route::get('/tests/test-question/{id}', [QuestionApiController::class, 'index']);
 

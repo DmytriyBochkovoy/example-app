@@ -7,20 +7,21 @@ export default {
                 return response;
             })
             .then((data) => {
-                console.log(data);
                 data.data.data.forEach((test) => {
                     context.commit("addTest", test);
+                    context.commit('addTestInCollection', test);
                 });
             });
     },
 
-    getTest: function (context, id) {
-        return requestServerAPI('get', `test/showApi/${id}`)
+    getQuestionsTest: function (context, id) {
+        return requestServerAPI('get', `api/tests/test-question/${id}`)
             .then((response) => {
                 return response.data;
             })
             .then((data) => {
-                context.commit("getTestsInCollection", data.data);
+                console.log(data.data);
+                context.commit("addTestQuestionsInCollection", data.data);
             });
     },
 };

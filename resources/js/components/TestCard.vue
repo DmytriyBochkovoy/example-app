@@ -8,8 +8,7 @@
                 <div class="my-3">Количество вопросов в тесте: {{test.questions_count}}</div>
             </div>
             <div class="text-center">
-                <a href="#"
-                   class="fs-5 my-2 btn btn-sm btn-outline-success">Пройти тест</a>
+                <router-link :to="{name: 'tests-user-id', params: {id: test.id}}" class="fs-5 my-2 btn btn-sm btn-outline-success">Пройти тест</router-link>
             </div>
         </div>
     </div>
