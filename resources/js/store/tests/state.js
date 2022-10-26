@@ -1,5 +1,6 @@
 export default {
-    questions: {},
+    questions: [],
+    testQuestionsCollection: {},
     collection: {},
     tests: [],
 }

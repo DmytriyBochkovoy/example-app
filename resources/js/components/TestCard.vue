@@ -23,8 +23,6 @@ export default {
             type: Object,
             required: true,
         },
-
-        id: Number,
     },
 }
 </script>

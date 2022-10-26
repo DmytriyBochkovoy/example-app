@@ -27,7 +27,8 @@ export default function requestServerAPI(method, route, data = null)
 }
 
 function request(options, {resolve}) {
-    return axios(options).then((response) => {
+    return axios(options)
+        .then((response) => {
         return resolve(response);
     });
 }

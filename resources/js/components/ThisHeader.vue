@@ -8,13 +8,13 @@
                 <span class="fs-4">Testing</span>
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
-                <li class="nav-item"><router-link class="nav-link fw-bolder" to="/tests-user">Тесты</router-link></li>
-                <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
-                <li class="nav-item"><a href="{{ route('tests-result') }}" class="nav-link">Результаты тестирования</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Мероприятия</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">опрос</a></li>
-                <li class="nav-item"><a href="{{ route('tests') }}" class="nav-link">Редактирование тестов</a></li>
+                <li class="nav-item bgn-hover"><a href="/" class="nav-link text-color" aria-current="page">Главная</a></li>
+                <li class="nav-item bgn-hover"><router-link class="nav-link text-color" to="/tests/user">Тесты</router-link></li>
+                <li class="nav-item bgn-hover"><a href="#" class="nav-link text-color">О проекте</a></li>
+                <li class="nav-item bgn-hover"><a href="{{ route('tests-result') }}" class="nav-link text-color">Результаты тестирования</a></li>
+                <li class="nav-item bgn-hover"><a href="#" class="nav-link text-color">Мероприятия</a></li>
+                <li class="nav-item bgn-hover"><a href="#" class="nav-link text-color">опрос</a></li>
+                <li class="nav-item bgn-hover"><a href="{{ route('tests') }}" class="nav-link text-color">Редактирование тестов</a></li>
             </ul>
         </header>
     </section>
@@ -27,5 +27,11 @@ export default {
 </script>
 
 <style scoped>
-
+    .bgn-hover:hover {
+        background-color: cornflowerblue;
+        border-radius: 5px;
+    }
+    .text-color:hover {
+        color: white;
+    }
 </style>

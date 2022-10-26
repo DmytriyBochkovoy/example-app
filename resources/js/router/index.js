@@ -4,12 +4,12 @@ import TestPass from "../components/TestPassUser.vue";
 
 const routes = [
     {
-        path: '/tests-user',
+        path: '/tests/user',
         name: 'TestsUser',
         component: TestsUser
     },
     {
-        path: '/tests-user/:id',
+        path: '/tests/:id/questions/user',
         name: 'tests-user-id',
         component: TestPass,
         props: true,

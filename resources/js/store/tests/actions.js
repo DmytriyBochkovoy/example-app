@@ -1,7 +1,8 @@
 import requestServerAPI from '../../api/requestServerAPI.js';
+import axios from "axios";
 
 export default {
-    getTests(context) {
+    getTests (context) {
         requestServerAPI('get', 'api/tests/all')
             .then((response) => {
                 return response;
@@ -14,14 +15,23 @@ export default {
             });
     },
 
-    getQuestionsTest: function (context, id) {
-        return requestServerAPI('get', `api/tests/test-question/${id}`)
-            .then((response) => {
-                return response.data;
-            })
+    getQuestionsTest (context, id) {
+        return requestServerAPI('get', `api/tests/${id}/questions`)
             .then((data) => {
-                console.log(data.data);
-                context.commit("addTestQuestionsInCollection", data.data);
+                data.data.data.forEach((question) => {
+                    context.commit("addTestQuestions", question);
+                    context.commit("addTestQuestionInCollection", { question, testId: id });
+                });
             });
     },
+
+    postAnswerResult (context, data) {
+        return requestServerAPI('post', 'api/tests/answer/user', data)
+            .then(function (response) {
+                return response;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 };

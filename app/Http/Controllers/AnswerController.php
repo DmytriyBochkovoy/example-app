@@ -81,6 +81,8 @@ class AnswerController extends Controller
     {
         $answersUser = $request->all();
 
+        dd($answersUser);
+
         unset($answersUser['_token']);
 
         $userId = Auth::id();

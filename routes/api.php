@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AnswerApiController;
 use App\Http\Controllers\Api\QuestionApiController;
 use App\Http\Controllers\Api\TestApiController;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/tests/all', [TestApiController::class, 'index']);
 
-Route::get('/tests/test-question/{id}', [QuestionApiController::class, 'index']);
+Route::get('/tests/{id}/questions', [QuestionApiController::class, 'index']);
+
+Route::post('/tests/answer/user', [AnswerApiController::class, 'testResultData']);
 

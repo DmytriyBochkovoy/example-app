@@ -3,21 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\DataTransferObjects\CreateTestData;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\CreateTestResource;
-use App\Http\Resources\TestResources;
+use App\Http\Resources\TestResource;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Enums\QuestionTypeEnum;
 
-class TestApiController
+class TestApiController extends Controller
 {
     public function index()
     {
-        $testPaginator = Test::withCount('questions')->paginate();
-
-//        $testPaginator = TestResources::toArray($testPaginator);
-
-        return $testPaginator;
-
+        return $testPaginator = Test::withCount('questions')->paginate();
     }
 }

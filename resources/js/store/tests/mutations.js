@@ -4,9 +4,19 @@ export default {
     },
     addTestInCollection(state, test) {
         state.collection[test.id] = test;
+        state.testQuestionsCollection[test.id] = Array;
     },
-    addTestQuestionsInCollection(state, questions) {
-        state.questions = questions;
-        console.log(questions);
+    addTestQuestions(state, question) {
+        state.questions.push(question);
     },
+    addTestQuestionInCollection (state, { question, testId }) {
+        if (!_.isArray(state.testQuestionsCollection[testId])) {
+            state.testQuestionsCollection[testId] = [];
+        }
+
+        state.testQuestionsCollection[testId].push(question);
+    }
+    // resetQuestionsCollection(state, question) {
+    //     state.questions = [];
+    // },
 }
