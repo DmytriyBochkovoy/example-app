@@ -9,12 +9,15 @@ export default {
     addTestQuestions(state, question) {
         state.questions.push(question);
     },
-    addTestQuestionInCollection (state, { question, testId }) {
+    addTestQuestionInCollection(state, {question, testId}) {
         if (!_.isArray(state.testQuestionsCollection[testId])) {
             state.testQuestionsCollection[testId] = [];
         }
 
         state.testQuestionsCollection[testId].push(question);
+    },
+    addTestResult(state, result) {
+        state.testResult = result;
     }
     // resetQuestionsCollection(state, question) {
     //     state.questions = [];

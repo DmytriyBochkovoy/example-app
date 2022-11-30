@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Enums\QuestionTypeEnum;
 use App\Http\Requests\QuestionRequest;
-use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionType;
 use App\Models\Test;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {

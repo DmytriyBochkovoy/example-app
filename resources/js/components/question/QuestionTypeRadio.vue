@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="form-check">
             <input
-                v-model="value"
+
                 type="radio"
                 class="form-check-input"
                 :id="'answer_' + answer.id"

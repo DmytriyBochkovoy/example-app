@@ -12,8 +12,12 @@ use App\Enums\QuestionTypeEnum;
 
 class TestApiController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
+        return $testPaginator = Test::withCount('questions')->paginate();
+    }
+
+    public function index() {
         return $testPaginator = Test::withCount('questions')->paginate();
     }
 }

@@ -58,7 +58,7 @@
                     </li>
                 @endif
                 <li class="nav-item"><a href="#" class="nav-link">О проекте</a></li>
-                <li class="nav-item"><a href="{{ route('tests-result') }}" class="nav-link">Результаты тестирования</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Результаты тестирования</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Мероприятия</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">опрос</a></li>
                 <li class="nav-item"><a href="{{ route('tests') }}" class="nav-link">Редактирование тестов</a></li>

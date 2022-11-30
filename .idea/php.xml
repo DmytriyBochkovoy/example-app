@@ -32,7 +32,6 @@
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
-      <path value="$PROJECT_DIR$/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/vendor/laravel/serializable-closure" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
@@ -121,6 +120,8 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-package-tools" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/laravel/sail" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

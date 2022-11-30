@@ -1,7 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
 
-import {createApp} from "vue/dist/vue.esm-bundler";
+import {createApp} from "vue";
 
 import router from "./router"
 import store from "./store";

@@ -30,9 +30,11 @@ import QuestionAnswers from './QuestionAnswers.vue'
 
 export default {
     name: "TestPassUser",
+
     components: {
         QuestionAnswers,
     },
+
     props: {
         id: {
             type: String,
@@ -54,7 +56,8 @@ export default {
 
     methods: {
         postAnswerResult () {
-            this.$store.dispatch("tests/postAnswerResult", this.formData)
+            this.$store.dispatch("tests/postAnswerResult", this.formData);
+            this.$router.push({name: 'testResult'});
         }
     },
 

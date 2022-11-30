@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import TestsUser from "../components/TestsUser.vue";
+import TestsUser from "../components/TestsCatalog.vue";
 import TestPass from "../components/TestPassUser.vue";
+import TestResult from "../components/TestResult.vue";
+import Registration from "../components/user/Registration.vue";
+import LogIn from "../components/user/LogIn.vue";
 
 const routes = [
     {
@@ -14,6 +17,21 @@ const routes = [
         component: TestPass,
         props: true,
     },
+    {
+        path: '/tests/user/result',
+        name: 'testResult',
+        component: TestResult
+    },
+    {
+        path:'/registration',
+        name: 'registration',
+        component: Registration
+    },
+    {
+        path:'/login',
+        name: 'login',
+        component: LogIn
+    }
 ]
 
 const router = createRouter({

@@ -1,8 +1,9 @@
 <template>
     <div class="col-12">
+        {{value1}}
         <div class="form-check">
             <input
-                v-model="value"
+                v-model="value1"
                 type="checkbox"
                 class="form-check-input"
                 :id="'answer_' + answer.id"
@@ -28,9 +29,18 @@ export default {
             default: () => [],
         },
     },
+    data () {
+        return {
+            value1: this.value,
+        }
+    },
     watch: {
-        value() {
-            this.$emit('answer-changed', this.value);
+        value1: {
+            handle () {
+                console.log('wdWFAWFA ');
+                this.$emit('answer-changed', this._value);
+            },
+            deep: true,
         }
     }
 }

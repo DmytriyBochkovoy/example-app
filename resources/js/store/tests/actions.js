@@ -28,7 +28,7 @@ export default {
     postAnswerResult (context, data) {
         return requestServerAPI('post', 'api/tests/answer/user', data)
             .then(function (response) {
-                return response;
+                context.commit("addTestResult", response.data);
             })
             .catch(function (error) {
                 console.log(error);

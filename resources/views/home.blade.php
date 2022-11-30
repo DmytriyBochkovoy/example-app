@@ -1,23 +1,23 @@
-@extends('index')
+@extends('layouts.app')
 
-@section('title')
-    Главная
-@endsection()
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-@section('main')
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Проект: Тестирование персонала.</h1>
-                <p class="lead text-muted">Совершенствование подходов к разработке и использованию интерактивных
-                    обучающих материалов для учебных предметов (предметных областей)
-                    в общеобразовательных организациях в условиях развития современной
-                    цифровой образовательной среды</p>
-                <p>
-                    <a href="{{ route('tests') }}" class="btn btn-primary my-2">Перейти в каталог тестов</a>
-                </p>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 @endsection
-
