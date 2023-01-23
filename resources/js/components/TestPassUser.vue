@@ -6,7 +6,7 @@
             <div v-for="(question, index) in questions" :key="index">
                 <div class="row bg-light p-3 mt-3 mx-3 border border-bottom-0 border-info">
                     <div class="col-12">
-                        <span class="lead fw-bold ">{{ question.text }}</span>
+                        <span class="lead fw-bold">{{index + 1}}. {{ question.text }}</span>
                     </div>
                 </div>
                 <div class="row bg-light p-3 mb-3 mx-3 border border-top-0 border-info">
@@ -62,7 +62,9 @@ export default {
     },
 
     created() {
-        this.$store.dispatch("tests/getQuestionsTest", this.id);
+        if (isEmpty(this.questions)) {
+            this.$store.dispatch("tests/getQuestionsTest", this.id);
+        }
     },
 }
 </script>

@@ -36,6 +36,9 @@ export default {
     methods: {
         registration() {
             this.$store.dispatch("users/registration", this.auth);
+            // if(is) {
+            //     this.$router.push({name: 'testResult'});
+            // };
         }
     }
 }

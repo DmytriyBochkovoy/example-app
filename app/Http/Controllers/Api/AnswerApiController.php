@@ -19,12 +19,12 @@ class AnswerApiController extends Controller
         $result = $this->processingTestResults($answersUser);
 
         $answersUserData = [
-            'user_id' => '4777',
+            'user_id' => '7447',
             'answers' => $answersUser,
             'result' => $result,
         ];
 
-//        TestResult::create($answersUserData);
+        TestResult::create($answersUserData);
 
         return $result;
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('text');
             $table->unsignedBigInteger('question_id');
             $table->boolean('is_true');
+            $table->integer('mark');
             $table->timestamps();
             $table->softDeletes();
         });

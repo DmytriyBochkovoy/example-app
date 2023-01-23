@@ -2,18 +2,36 @@
     <div>
         <div v-for="(answer, index) in question.answers" :key="index">
             <div v-if="question.question_type === 'multiple'">
-                <QuestionTypeCheckbox
-                    :answer="answer"
-                    :value="value"
-                    @answer-changed="value = $event"
-                />
+                <div class="col-12">
+                    <div class="form-check">
+                        <input
+                            v-model="value"
+                            type="checkbox"
+                            class="form-check-input"
+                            :id="'answer_' + answer.id"
+                            :name="'answer_' + answer.question_id"
+                            :value="answer.id"
+                        />
+                        <label class="form-check-label fs-5"
+                               :for="'answer_' + answer.id">{{index + 1}}. {{ answer.text }}</label>
+                    </div>
+                </div>
             </div>
             <div v-else-if="question.question_type === 'single'">
-                <QuestionTypeRadio
-                    :answer="answer"
-                    :value="value"
-                    @answer-changed="value = $event"
-                />
+                <div class="col-12">
+                    <div class="form-check">
+                        <input
+                            v-model="value"
+                            type="radio"
+                            class="form-check-input"
+                            :id="'answer_' + answer.id"
+                            :name="'answer_' + answer.question_id"
+                            :value="answer.id"
+                        />
+                        <label class="form-check-label fs-5"
+                               :for="'answer_' + answer.id">{{index + 1}}. {{ answer.text }}</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -21,24 +39,20 @@
 
 <script>
 
-import QuestionTypeCheckbox from "./question/QuestionTypeCheckbox.vue";
-import QuestionTypeRadio from "./question/QuestionTypeRadio.vue";
-
 export default {
     name: "QuestionAnswers",
-    components: {
-        QuestionTypeCheckbox,
-        QuestionTypeRadio,
-    },
+
     props: {
         question: {
             type: Object,
             required: true,
         },
         value: {
-            type: [Object, Number],
+            type: [Array, Number],
+            default: [],
         }
     },
+
     watch: {
         value() {
             this.$emit('answer-value', this.value);

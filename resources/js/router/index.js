@@ -5,6 +5,18 @@ import TestResult from "../components/TestResult.vue";
 import Registration from "../components/user/Registration.vue";
 import LogIn from "../components/user/LogIn.vue";
 
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.getters.isLoggedIn) {
+            next()
+            return
+        }
+        next('/login')
+    } else {
+        next()
+    }
+})
+
 const routes = [
     {
         path: '/tests/user',

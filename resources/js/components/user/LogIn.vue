@@ -1,8 +1,7 @@
 <template>
     <div class="container">
         <form
-            @submit.prevent="logIn">
-            <h1 class="h3 mb-3 fw-normal text-center">Войти</h1>
+            @submit.prevent="login">
             <div class="form-floating my-2">
                 <input v-model="auth.email" type="email" name="email" class="form-control" id="floatingInput"
                        placeholder="name@example.com">
@@ -32,13 +31,21 @@ export default {
                 password: ""
             },
             validationErrors: {},
-            processing: false
+            processing: false,
+            statusAuth: null,
         }
     },
 
     methods: {
-        logIn() {
+        login() {
             this.$store.dispatch("users/login", this.auth);
+
+            if (this.statusAuthenticated) {
+                this.$router.push({name: 'TestsUser'})
+            }
+        },
+        statusAuthenticated() {
+            return this.$store.getters['users/authenticated']
         }
     },
 }

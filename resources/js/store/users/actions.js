@@ -2,30 +2,34 @@ import requestServerAPI from '../../api/requestServerAPI.js';
 import axios from "axios";
 
 export default {
-    login(context, data){
+    login(context, data) {
         axios.get('/sanctum/csrf-cookie').then(response => {
-            return axios.post('login', data).then(()=>{
-                // context.commit('setUser',data)
-                // context.commit('setAuthenticated', true)
+            return axios.post('/login', data).then(()=>{
+                context.commit('setUser', data);
+                context.commit('setAuthenticated', true);
             }).catch(({response:{data}})=>{
-                // context.commit('setUser',{})
-                // context.commit('setAuthenticated',false)
+                context.commit('setUser',{});
+                context.commit('setAuthenticated', false);
             })
         });
     },
     registration(context, data) {
         axios.get('/sanctum/csrf-cookie').then(response => {
-            return axios.post('register', data).then(()=>{
-                // context.commit('setUser',data)
-                // context.commit('setAuthenticated', true)
+            return axios.post('/register', data).then(()=>{
+                context.commit('setUser', data);
+                context.commit('setAuthenticated', true);
             }).catch(({response:{data}})=>{
-                // context.commit('setUser',{})
-                // context.commit('setAuthenticated',false)
+                context.commit('setUser',{});
+                context.commit('setAuthenticated',false);
             })
         });
     },
-    logout({commit}){
-        commit('setUser', {})
-        commit('setAuthenticated', false)
+    logout(context) {
+        axios.post('/logout').then(()=>{
+                context.commit('setUser', {});
+                context.commit('setAuthenticated', false);
+            }).catch(({response:{data}})=>{
+                console.log('ERROR')
+            });
     }
 };
