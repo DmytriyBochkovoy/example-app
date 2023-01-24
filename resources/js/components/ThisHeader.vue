@@ -5,12 +5,12 @@
                 <span class="fs-4">TESTING</span>
             </a>
             <ul class="nav nav-pills">
-                <li
+                <li v-if="auth() === false"
                     class="nav-item bgn-hover"
                 >
-                    <router-link class="nav-link text-color" to="/login">Войти</router-link>
+                    <router-link class="nav-link text-color" to="/authenticate">Войти</router-link>
                 </li>
-                <li
+                <li v-if="auth() === true"
                     class="nav-item bgn-hover"
                 >
                    <Logout/>
@@ -41,17 +41,11 @@ export default {
         Logout,
     },
 
-    // computed: {
-    //     statusAuth() {
-    //         return this.$store.getters['users/authenticated']
-    //     }
-    // },
-    //
-    // watch: {
-    //     statusAuth() {
-    //         return this.$store.getters['users/authenticated']
-    //     }
-    // }
+    methods: {
+        auth() {
+            return this.$store.getters['users/authenticated'];
+        },
+    }
 }
 </script>
 

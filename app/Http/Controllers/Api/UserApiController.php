@@ -55,6 +55,7 @@ class UserApiController extends Controller
 
         return redirect(route('index'));
     }
-
-
+    public function userData() {
+        return Auth::user();
+    }
 }

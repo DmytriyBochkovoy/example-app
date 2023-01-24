@@ -4,10 +4,17 @@ window._ = _;
 // import 'bootstrap';
 
 import axios from 'axios';
+import router from "./router";
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.withCredentials = true;
+
+window.axios.interceptors.response.use({}, error => {
+    if (error.response.status === 401 || error.response.status === 419) {
+        router.push({name: 'login'});
+    }
+})
 
 // import Echo from 'laravel-echo';
 

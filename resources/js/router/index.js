@@ -1,21 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import TestsUser from "../components/TestsCatalog.vue";
 import TestPass from "../components/TestPassUser.vue";
 import TestResult from "../components/TestResult.vue";
 import Registration from "../components/user/Registration.vue";
 import LogIn from "../components/user/LogIn.vue";
-
-router.beforeEach((to, from, next) => {
-    if(to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.isLoggedIn) {
-            next()
-            return
-        }
-        next('/login')
-    } else {
-        next()
-    }
-})
+import store from "../store";
+import {isEmpty} from "lodash/lang";
 
 const routes = [
     {
@@ -35,12 +25,12 @@ const routes = [
         component: TestResult
     },
     {
-        path:'/registration',
+        path: '/registration',
         name: 'registration',
         component: Registration
     },
     {
-        path:'/login',
+        path: '/authenticate',
         name: 'login',
         component: LogIn
     }
@@ -49,6 +39,17 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    let authUser = store.state.users.user;
+
+    if(isEmpty(authUser)) {
+        store.dispatch('users/authUser');
+        return next();
+    }
+
+    return next();
 })
 
 export default router
