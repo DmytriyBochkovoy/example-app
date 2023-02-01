@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="form-check">
                         <input
-                            v-model="value"
+                            v-model="v1"
                             type="checkbox"
                             class="form-check-input"
                             :id="'answer_' + answer.id"
@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="form-check">
                         <input
-                            v-model="value"
+                            v-model="v1"
                             type="radio"
                             class="form-check-input"
                             :id="'answer_' + answer.id"
@@ -53,11 +53,22 @@ export default {
         }
     },
 
-    watch: {
-        value() {
-            this.$emit('answer-value', this.value);
+    computed: {
+        v1: {
+            get() {
+                return this.value;
+            },
+            set(value) {
+                this.$emit('answer-value', value);
+            }
         }
     },
+
+    // watch: {
+    //     value() {
+    //         this.$emit('answer-value', this.value);
+    //     }
+    // },
 }
 </script>
 

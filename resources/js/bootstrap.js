@@ -12,7 +12,8 @@ axios.defaults.withCredentials = true;
 
 window.axios.interceptors.response.use({}, error => {
     if (error.response.status === 401 || error.response.status === 419) {
-        router.push({name: 'login'});
+        console.log(error.response.status)
+        // router.push({name: 'login'});
     }
 })
 

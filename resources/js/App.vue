@@ -14,6 +14,13 @@ export default {
     components: {
         Header,
         Footer,
+    },
+
+    created() {
+        this.$store.dispatch('users/authUser');
+    },
+    updated() {
+        this.$store.dispatch('users/authUser');
     }
 }
 </script>

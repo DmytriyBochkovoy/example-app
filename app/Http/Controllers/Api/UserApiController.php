@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserApiController extends Controller
 {
@@ -55,7 +57,18 @@ class UserApiController extends Controller
 
         return redirect(route('index'));
     }
+
+    /**
+     * @throws Exception
+     */
     public function userData() {
-        return Auth::user();
+        $user = Auth::user();
+
+        if($user === null) {
+//            throw new Exception('Пользовтель не авторизован', 401);
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+
+        return $user;
     }
 }

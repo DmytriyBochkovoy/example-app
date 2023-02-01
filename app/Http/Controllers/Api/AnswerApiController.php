@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\TestResult;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerApiController extends Controller
 {
@@ -14,12 +15,12 @@ class AnswerApiController extends Controller
     {
         $answersUser = $request->all();
 
-//        $userId = Auth::id();
+        $userId = Auth::id();
 
         $result = $this->processingTestResults($answersUser);
 
         $answersUserData = [
-            'user_id' => '7447',
+            'user_id' => $userId,
             'answers' => $answersUser,
             'result' => $result,
         ];

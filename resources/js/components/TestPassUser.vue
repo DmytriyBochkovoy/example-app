@@ -42,6 +42,11 @@ export default {
         },
     },
 
+    beforeRouteLeave (to, from) {
+        const answer = window.confirm('Вы действительно хотите уйти?')
+        if (!answer) return false
+    },
+
     data() {
         return {
             formData: {},
@@ -58,6 +63,24 @@ export default {
         postAnswerResult () {
             this.$store.dispatch("tests/postAnswerResult", this.formData);
             this.$router.push({name: 'testResult'});
+        },
+
+        test(question, value) {
+            // Object.defineProperty(this.formData, question.id, {
+            //     value: null,
+            // });
+
+            let bValue = 38;
+
+            Object.defineProperty(this.formData,  question.id, {
+                get() {
+                    return bValue;
+                },
+                set(newValue) {
+                    bValue = newValue;
+                },
+            });
+            console.log('this', this.formData);
         }
     },
 

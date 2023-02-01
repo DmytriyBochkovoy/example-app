@@ -2,7 +2,8 @@
     <div>
         <button
             @click="logout"
-            class="nav-link text-color" type="submit"
+            class="btn btn-danger"
+            type="submit"
         >
             Выйти
         </button>

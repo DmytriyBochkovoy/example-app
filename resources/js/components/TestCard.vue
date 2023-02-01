@@ -1,58 +1,19 @@
 <template>
     <div class="col my-3">
-        <div class="card shadow-sm">
-            <p class="btn btn-sm  bg-secondary fs-4 py-5">{{test.name}}</p>
+        <div class="card card-background-color text-white">
+            <p class=" text-center fs-4 py-5 text-white">{{test.name}}</p>
             <div class="card-body">
                 <p class="card-text">Описание теста: {{test.description}}</p>
                 <div class="my-3">Количество вопросов в тесте: {{test.questions_count}}</div>
             </div>
             <div class="text-center">
-                <div
-                    v-if="auth() === true"
-                >
+                <div>
                     <router-link
                         :to="{name: 'tests-user-id', params: {id: test.id}}"
-                        class="fs-5 my-2 btn btn-sm btn-outline-success"
+                        class="fs-5 my-2 btn btn-sm btn-outline-light"
                     >
                         Пройти тест
                     </router-link>
-                </div>
-                <div
-                    v-else
-                >
-                    <button
-                        type="button"
-                        class="fs-5 my-2 btn btn-sm btn-outline-success"
-                        @click="showModal"
-                    >
-                        Пройти тест
-                    </button>
-                    <BaseModal
-                        v-show="isModalVisible"
-                        @close="closeModal"
-                    >
-                        <template
-                            v-slot:body
-                        >
-                            <p
-                                class="text-center fs-5 text-color-Success"
-                            >
-                                Для прохождение теста необходимо зарегистрироваться.
-                            </p>
-                        </template>
-                        <template
-                            v-slot:footer
-                        >
-                            <div class="text-center fs-5 mt-2">
-                                <router-link
-                                    class="w-100 btn btn-success"
-                                    to="/registration"
-                                >
-                                    Зарегистрироваться
-                                </router-link>
-                            </div>
-                        </template>
-                    </BaseModal>
                 </div>
             </div>
         </div>
@@ -60,13 +21,9 @@
 </template>
 
 <script>
-import BaseModal from "./ui/BaseModal.vue";
+// import BaseModal from "./ui/BaseModal.vue";
 export default {
     name: "TestCard",
-
-    components: {
-        BaseModal,
-    },
 
     props: {
         test: {
@@ -96,5 +53,11 @@ export default {
 </script>
 
 <style scoped>
-
+.card-background-color {
+    background: rgb(26,154,127);
+    background: linear-gradient(90deg, rgba(26,154,127,1) 0%, rgba(39,125,139,1) 100%);
+}
+.card {
+    border-radius: 10px;
+}
 </style>

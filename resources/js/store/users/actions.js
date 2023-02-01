@@ -5,10 +5,10 @@ import {isEmpty} from "lodash/lang";
 
 export default {
     login(context, data) {
-        axios.get('/sanctum/csrf-cookie').then(response => {
+        return axios.get('/sanctum/csrf-cookie').then(response => {
             return axios.post('/api/authenticate', data).then((res) => {
                 localStorage.setItem('token', res.config.headers['X-XSRF-TOKEN']);
-                context.commit('setUser', res);
+                context.commit('setUser', res.data);
                 context.commit('setAuthenticated', true);
             }).catch(({response: {data}}) => {
                 console.log('ERROR')
@@ -16,10 +16,10 @@ export default {
         });
     },
     registration(context, data) {
-        axios.get('/sanctum/csrf-cookie').then(response => {
+        return axios.get('/sanctum/csrf-cookie').then(response => {
             return axios.post('/register', data).then((res) => {
                 localStorage.setItem('token', res.config.headers['X-XSRF-TOKEN']);
-                context.commit('setUser', res);
+                context.commit('setUser', res.data);
                 context.commit('setAuthenticated', true);
             }).catch(({response: {data}}) => {
                 console.log('ERROR')
@@ -27,16 +27,14 @@ export default {
         });
     },
     authUser(context) {
-        axios.get('/sanctum/csrf-cookie').then(response => {
-            return axios.get('/api/user').then((res) => {
-                context.commit('setUser', res)
-                if (!isEmpty(res.data)) {
-                    context.commit('setAuthenticated', true)
-                }
-            }).catch(({response: {data}}) => {
-                console.log('ERROR')
-            })
-        });
+        return axios.get('/api/user').then((res) => {
+            context.commit('setUser', res.data);
+            if (!isEmpty(res.data)) {
+                context.commit('setAuthenticated', true);
+            }
+        }).catch((response) => {
+            console.log('ERROR')
+        })
     },
     logout(context) {
         axios.post('/logout').then(() => {
